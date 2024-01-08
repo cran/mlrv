@@ -1,7 +1,7 @@
 Package: mlrv
 Type: Package
 Title: Long-Run Variance Estimation in Time Series Regression
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(person(given = "Lujia", 
          family = "Bai",
          role = c("aut", "cre"), 
@@ -18,14 +18,15 @@ Imports: Rcpp, numDeriv, magrittr, foreach, doParallel, RcppArmadillo,
         mathjaxr, xtable, stats
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 7.2.3
-Suggests: knitr, rmarkdown, testthat (>= 3.0.0)
+Suggests: knitr, rmarkdown, spelling, testthat (>= 3.0.0)
 VignetteBuilder: knitr
 RdMacros: mathjaxr
 Config/testthat/edition: 3
+Language: en-US
 NeedsCompilation: yes
-Packaged: 2023-11-08 08:57:51 UTC; bailujia
+Packaged: 2023-12-26 09:17:51 UTC; bailujia
 Author: Lujia Bai [aut, cre],
   Weichi Wu [ctb]
 Maintainer: Lujia Bai <bailujia98@gmail.com>
 Repository: CRAN
-Date/Publication: 2023-11-08 19:30:10 UTC
+Date/Publication: 2024-01-08 23:10:07 UTC

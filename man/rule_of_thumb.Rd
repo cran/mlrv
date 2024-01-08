@@ -4,18 +4,12 @@
 \alias{rule_of_thumb}
 \title{rule of thumb interval for the selection of smoothing parameter b}
 \usage{
-rule_of_thumb(y, x, m = floor(n^(4/15)), tau_n = n^(-5/29), bw = n^(-1/5))
+rule_of_thumb(y, x)
 }
 \arguments{
 \item{y}{a vector, the response variable.}
 
 \item{x}{a matrix of covariates. If the intercept should be includes, the elements of the first column should be 1.}
-
-\item{m}{a number, a rule-of-thumb and pilot choice of \eqn{m}.}
-
-\item{tau_n}{a number, a rule-of-thumb and pilot choice of \mjseqn{\tau_n}.}
-
-\item{bw}{a number, a rule-of-thumb and pilot choice of \mjseqn{b_n}.}
 }
 \value{
 c(left, right), the vector with the left and right points of the interval

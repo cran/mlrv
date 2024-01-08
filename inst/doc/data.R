@@ -3,8 +3,8 @@ library(mlrv)
 library(foreach)
 library(magrittr)
 
-
-data(hk_data)
+load("../data/hk_data.RData")
+# data(hk_data)
 colnames(hk_data) = c("SO2","NO2","Dust","Ozone","Temperature",
                       "Humidity","num_circu","num_respir","Hospital Admission",
                       "w1","w2","w3","w4","w5","w6")
@@ -19,14 +19,15 @@ hk$y = hk_data$`Hospital Admission`
 pvmatrix = matrix(nrow=2, ncol=4)
 ###inistialization
 setting = list(B = 5000, gcv = 1, neighbour = 1)
-setting$lb = floor(20/7*n^(4/15)) - setting$neighbour 
-setting$ub = max(floor(24/7*n^(4/15))+ setting$neighbour,             
+setting$lb = floor(10/7*n^(4/15)) - setting$neighbour 
+setting$ub = max(floor(25/7*n^(4/15))+ setting$neighbour,             
                   setting$lb+2*setting$neighbour+1)
 
 ## -----------------------------------------------------------------------------
 setting$lrvmethod =0. 
 
 i=1
+# print(rule_of_thumb(y= hk$y, x = hk$x))
 for(type in c("KPSS","RS","VS","KS")){
   setting$type = type
   print(type)
@@ -123,7 +124,7 @@ for(type in c("KPSS","RS","VS","KS"))
   print(type)
   result_reg = heter_covariate(list(y= hk$y, x = hk$x),
                                              setting,
-                                        mvselect = -1, verbose_dist = TRUE, shift = 0.8)
+                                        mvselect = -2, verbose_dist = TRUE, shift = 0.8)
   print(paste("p-value",result_reg))
   pvmatrix[2,i] = result_reg
   i = i + 1
@@ -143,14 +144,10 @@ setting$bw_set = c(0.1, 0.35)
 setting$eta = 0.2
 setting$lrvmethod = 1
 setting$lb  = 10
-setting$ub  = 50
+setting$ub  = 15
 hk1 = list()
 hk1$x = hk$x[366:730,]
 hk1$y = hk$y[366:730]
 p1 <- heter_gradient(hk1, setting, mvselect = -2, verbose = T)
-p1
-
-## -----------------------------------------------------------------------------
-p1 <- heter_gradient(hk1, setting, mvselect = -1)
 p1
 
