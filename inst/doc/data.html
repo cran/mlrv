@@ -49,7 +49,7 @@ overflow: visible;
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -340,7 +340,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<p>Data analysis in the paper of <a href="https://arxiv.org/abs/2303.16599">Bai and Wu (2023b)</a>.</p>
+<p>Data analysis in the paper of Bai and Wu (2023b).</p>
 <div id="loading-data" class="section level3">
 <h3>Loading data</h3>
 <p>Hong Kong circulatory and respiratory data.</p>
@@ -348,17 +348,16 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(foreach)</span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;../data/hk_data.RData&quot;</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co"># data(hk_data)</span></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">colnames</span>(hk_data) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;SO2&quot;</span>,<span class="st">&quot;NO2&quot;</span>,<span class="st">&quot;Dust&quot;</span>,<span class="st">&quot;Ozone&quot;</span>,<span class="st">&quot;Temperature&quot;</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>                      <span class="st">&quot;Humidity&quot;</span>,<span class="st">&quot;num_circu&quot;</span>,<span class="st">&quot;num_respir&quot;</span>,<span class="st">&quot;Hospital Admission&quot;</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>                      <span class="st">&quot;w1&quot;</span>,<span class="st">&quot;w2&quot;</span>,<span class="st">&quot;w3&quot;</span>,<span class="st">&quot;w4&quot;</span>,<span class="st">&quot;w5&quot;</span>,<span class="st">&quot;w6&quot;</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">nrow</span>(hk_data)</span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>t <span class="ot">=</span> (<span class="dv">1</span><span class="sc">:</span>n)<span class="sc">/</span>n</span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>hk <span class="ot">=</span> <span class="fu">list</span>()</span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>hk<span class="sc">$</span>x <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">cbind</span>(<span class="fu">rep</span>(<span class="dv">1</span>,n), <span class="fu">scale</span>(hk_data[,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])))</span>
-<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>hk<span class="sc">$</span>y <span class="ot">=</span> hk_data<span class="sc">$</span><span class="st">`</span><span class="at">Hospital Admission</span><span class="st">`</span></span></code></pre></div>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">data</span>(hk_data)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">colnames</span>(hk_data) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;SO2&quot;</span>,<span class="st">&quot;NO2&quot;</span>,<span class="st">&quot;Dust&quot;</span>,<span class="st">&quot;Ozone&quot;</span>,<span class="st">&quot;Temperature&quot;</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>                      <span class="st">&quot;Humidity&quot;</span>,<span class="st">&quot;num_circu&quot;</span>,<span class="st">&quot;num_respir&quot;</span>,<span class="st">&quot;Hospital Admission&quot;</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>                      <span class="st">&quot;w1&quot;</span>,<span class="st">&quot;w2&quot;</span>,<span class="st">&quot;w3&quot;</span>,<span class="st">&quot;w4&quot;</span>,<span class="st">&quot;w5&quot;</span>,<span class="st">&quot;w6&quot;</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">nrow</span>(hk_data)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>t <span class="ot">=</span> (<span class="dv">1</span><span class="sc">:</span>n)<span class="sc">/</span>n</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>hk <span class="ot">=</span> <span class="fu">list</span>()</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>hk<span class="sc">$</span>x <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">cbind</span>(<span class="fu">rep</span>(<span class="dv">1</span>,n), <span class="fu">scale</span>(hk_data[,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])))</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>hk<span class="sc">$</span>y <span class="ot">=</span> hk_data<span class="sc">$</span><span class="st">`</span><span class="at">Hospital Admission</span><span class="st">`</span></span></code></pre></div>
 </div>
 <div id="test-for-long-memory" class="section level3">
 <h3>Test for long memory</h3>
@@ -384,13 +383,13 @@ function.</h4>
 <span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>  i <span class="ot">=</span> i <span class="sc">+</span> <span class="dv">1</span></span>
 <span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;KPSS&quot;
-## [1] &quot;p-value 0.2862&quot;
+## [1] &quot;p-value 0.2838&quot;
 ## [1] &quot;RS&quot;
-## [1] &quot;p-value 0.3022&quot;
+## [1] &quot;p-value 0.2896&quot;
 ## [1] &quot;VS&quot;
-## [1] &quot;p-value 0.126&quot;
+## [1] &quot;p-value 0.1148&quot;
 ## [1] &quot;KS&quot;
-## [1] &quot;p-value 0.4046&quot;</code></pre>
+## [1] &quot;p-value 0.4124&quot;</code></pre>
 </div>
 <div id="debias-difference-based-estimator-for-long-run-covariance-matrix-function." class="section level4">
 <h4>Debias difference-based estimator for long-run covariance matrix
@@ -408,13 +407,13 @@ function.</h4>
 <span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>  i <span class="ot">=</span> i <span class="sc">+</span> <span class="dv">1</span></span>
 <span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;KPSS&quot;
-## [1] &quot;p-value 0.7034&quot;
+## [1] &quot;p-value 0.6866&quot;
 ## [1] &quot;RS&quot;
-## [1] &quot;p-value 0.8002&quot;
+## [1] &quot;p-value 0.8066&quot;
 ## [1] &quot;VS&quot;
-## [1] &quot;p-value 0.7702&quot;
+## [1] &quot;p-value 0.5126&quot;
 ## [1] &quot;KS&quot;
-## [1] &quot;p-value 0.8612&quot;</code></pre>
+## [1] &quot;p-value 0.8346&quot;</code></pre>
 </div>
 <div id="output" class="section level4">
 <h4>Output</h4>
@@ -434,31 +433,31 @@ function.</h4>
 <tbody>
 <tr class="odd">
 <td align="left">plug</td>
-<td align="right">0.2862</td>
-<td align="right">0.3022</td>
-<td align="right">0.1260</td>
-<td align="right">0.4046</td>
+<td align="right">0.2838</td>
+<td align="right">0.2896</td>
+<td align="right">0.1148</td>
+<td align="right">0.4124</td>
 </tr>
 <tr class="even">
 <td align="left">diff</td>
-<td align="right">0.7034</td>
-<td align="right">0.8002</td>
-<td align="right">0.7702</td>
-<td align="right">0.8612</td>
+<td align="right">0.6866</td>
+<td align="right">0.8066</td>
+<td align="right">0.5126</td>
+<td align="right">0.8346</td>
 </tr>
 </tbody>
 </table>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>xtable<span class="sc">::</span><span class="fu">xtable</span>(pvmatrix, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## % latex table generated in R 4.3.2 by xtable 1.8-4 package
-## % Tue Dec 26 10:15:14 2023
+<pre><code>## % latex table generated in R 4.4.1 by xtable 1.8-4 package
+## % Tue Jul 30 21:23:49 2024
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rrrrr}
 ##   \hline
 ##  &amp; KPSS &amp; RS &amp; VS &amp; KS \\ 
 ##   \hline
-## plug &amp; 0.286 &amp; 0.302 &amp; 0.126 &amp; 0.405 \\ 
-##   diff &amp; 0.703 &amp; 0.800 &amp; 0.770 &amp; 0.861 \\ 
+## plug &amp; 0.284 &amp; 0.290 &amp; 0.115 &amp; 0.412 \\ 
+##   diff &amp; 0.687 &amp; 0.807 &amp; 0.513 &amp; 0.835 \\ 
 ##    \hline
 ## \end{tabular}
 ## \end{table}</code></pre>
@@ -482,13 +481,13 @@ factor. - Shift = 1.2 with plug-in estimator.</p>
 <span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a>  i <span class="ot">=</span> i <span class="sc">+</span> <span class="dv">1</span></span>
 <span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;KPSS&quot;
-## [1] &quot;p-value 0.418&quot;
+## [1] &quot;p-value 0.4256&quot;
 ## [1] &quot;RS&quot;
-## [1] &quot;p-value 0.3628&quot;
+## [1] &quot;p-value 0.3638&quot;
 ## [1] &quot;VS&quot;
-## [1] &quot;p-value 0.1198&quot;
+## [1] &quot;p-value 0.118&quot;
 ## [1] &quot;KS&quot;
-## [1] &quot;p-value 0.569&quot;</code></pre>
+## [1] &quot;p-value 0.561&quot;</code></pre>
 <ul>
 <li>Shift = 1.2 with debias difference-based estimator. Choosing
 verbose_dist = TRUE can print more intermediate results, the exact
@@ -510,36 +509,36 @@ bootstrap distribution and the p-value.</li>
 <span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;KPSS&quot;
 ## [1] &quot;gcv 0.193398841583897&quot;
-## [1] &quot;m 8 tau_n 0.332134206312301&quot;
+## [1] &quot;m 14 tau_n 0.332134206312301&quot;
 ## [1] &quot;test statistic: 141.654657280933&quot;
 ## [1] &quot;Bootstrap distribution&quot;
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   11.78   69.74  142.39  235.86  302.58 3490.68 
-## [1] &quot;p-value 0.5018&quot;
+##   13.81  107.33  215.16  368.80  460.94 5186.84 
+## [1] &quot;p-value 0.6462&quot;
 ## [1] &quot;RS&quot;
 ## [1] &quot;gcv 0.193398841583897&quot;
 ## [1] &quot;m 15 tau_n 0.332134206312301&quot;
 ## [1] &quot;test statistic: 1067.76713443354&quot;
 ## [1] &quot;Bootstrap distribution&quot;
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   494.1  1027.5  1232.8  1304.9  1512.1  3531.3 
-## [1] &quot;p-value 0.7044&quot;
+##   535.2  1023.8  1232.0  1302.6  1508.2  3383.7 
+## [1] &quot;p-value 0.6994&quot;
 ## [1] &quot;VS&quot;
 ## [1] &quot;gcv 0.193398841583897&quot;
-## [1] &quot;m 8 tau_n 0.332134206312301&quot;
+## [1] &quot;m 17 tau_n 0.332134206312301&quot;
 ## [1] &quot;test statistic: 103.342038019402&quot;
 ## [1] &quot;Bootstrap distribution&quot;
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   6.723  41.592  71.645 104.158 129.037 994.853 
-## [1] &quot;p-value 0.336&quot;
+##   11.94   70.04  110.26  152.36  187.41 1230.74 
+## [1] &quot;p-value 0.538&quot;
 ## [1] &quot;KS&quot;
 ## [1] &quot;gcv 0.193398841583897&quot;
-## [1] &quot;m 17 tau_n 0.332134206312301&quot;
+## [1] &quot;m 17 tau_n 0.382134206312301&quot;
 ## [1] &quot;test statistic: 671.676091515897&quot;
 ## [1] &quot;Bootstrap distribution&quot;
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   337.2   719.1   920.8  1003.3  1208.8  3178.5 
-## [1] &quot;p-value 0.812&quot;</code></pre>
+##   352.6   720.4   923.3  1007.3  1213.0  3363.9 
+## [1] &quot;p-value 0.8108&quot;</code></pre>
 <ul>
 <li>Results of shift = 1.2</li>
 </ul>
@@ -559,31 +558,31 @@ bootstrap distribution and the p-value.</li>
 <tbody>
 <tr class="odd">
 <td align="left">plug</td>
-<td align="right">0.4180</td>
-<td align="right">0.3628</td>
-<td align="right">0.1198</td>
-<td align="right">0.569</td>
+<td align="right">0.4256</td>
+<td align="right">0.3638</td>
+<td align="right">0.118</td>
+<td align="right">0.5610</td>
 </tr>
 <tr class="even">
 <td align="left">diff</td>
-<td align="right">0.5018</td>
-<td align="right">0.7044</td>
-<td align="right">0.3360</td>
-<td align="right">0.812</td>
+<td align="right">0.6462</td>
+<td align="right">0.6994</td>
+<td align="right">0.538</td>
+<td align="right">0.8108</td>
 </tr>
 </tbody>
 </table>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>xtable<span class="sc">::</span><span class="fu">xtable</span>(pvmatrix, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## % latex table generated in R 4.3.2 by xtable 1.8-4 package
-## % Tue Dec 26 10:16:38 2023
+<pre><code>## % latex table generated in R 4.4.1 by xtable 1.8-4 package
+## % Tue Jul 30 21:25:13 2024
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rrrrr}
 ##   \hline
 ##  &amp; KPSS &amp; RS &amp; VS &amp; KS \\ 
 ##   \hline
-## plug &amp; 0.418 &amp; 0.363 &amp; 0.120 &amp; 0.569 \\ 
-##   diff &amp; 0.502 &amp; 0.704 &amp; 0.336 &amp; 0.812 \\ 
+## plug &amp; 0.426 &amp; 0.364 &amp; 0.118 &amp; 0.561 \\ 
+##   diff &amp; 0.646 &amp; 0.699 &amp; 0.538 &amp; 0.811 \\ 
 ##    \hline
 ## \end{tabular}
 ## \end{table}</code></pre>
@@ -605,13 +604,13 @@ bootstrap distribution and the p-value.</li>
 <span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a>  i <span class="ot">=</span> i <span class="sc">+</span> <span class="dv">1</span></span>
 <span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;KPSS&quot;
-## [1] &quot;p-value 0.1714&quot;
+## [1] &quot;p-value 0.2458&quot;
 ## [1] &quot;RS&quot;
-## [1] &quot;p-value 0.123&quot;
+## [1] &quot;p-value 0.1662&quot;
 ## [1] &quot;VS&quot;
-## [1] &quot;p-value 0.1156&quot;
+## [1] &quot;p-value 0.1234&quot;
 ## [1] &quot;KS&quot;
-## [1] &quot;p-value 0.2482&quot;</code></pre>
+## [1] &quot;p-value 0.2726&quot;</code></pre>
 <ul>
 <li>Shift = 0.8 with the debias difference-based estimator.</li>
 </ul>
@@ -631,36 +630,36 @@ bootstrap distribution and the p-value.</li>
 <span id="cb19-14"><a href="#cb19-14" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;KPSS&quot;
 ## [1] &quot;gcv 0.128932561055931&quot;
-## [1] &quot;m 9 tau_n 0.382134206312301&quot;
+## [1] &quot;m 8 tau_n 0.382134206312301&quot;
 ## [1] &quot;test statistic: 166.543448031107&quot;
 ## [1] &quot;Bootstrap distribution&quot;
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   18.63  101.76  202.70  335.57  421.49 3033.43 
-## [1] &quot;p-value 0.5762&quot;
+##   12.78   99.10  200.38  331.58  421.82 3152.45 
+## [1] &quot;p-value 0.571&quot;
 ## [1] &quot;RS&quot;
 ## [1] &quot;gcv 0.128932561055931&quot;
-## [1] &quot;m 17 tau_n 0.382134206312301&quot;
+## [1] &quot;m 18 tau_n 0.382134206312301&quot;
 ## [1] &quot;test statistic: 998.08124125936&quot;
 ## [1] &quot;Bootstrap distribution&quot;
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   652.5  1239.0  1498.5  1569.0  1826.4  3783.7 
-## [1] &quot;p-value 0.9314&quot;
+##   699.6  1276.2  1535.9  1614.1  1874.8  3730.1 
+## [1] &quot;p-value 0.9464&quot;
 ## [1] &quot;VS&quot;
 ## [1] &quot;gcv 0.128932561055931&quot;
-## [1] &quot;m 9 tau_n 0.382134206312301&quot;
+## [1] &quot;m 9 tau_n 0.332134206312301&quot;
 ## [1] &quot;test statistic: 78.0587445148255&quot;
 ## [1] &quot;Bootstrap distribution&quot;
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   12.79   65.05  109.38  154.78  193.22 1514.37 
-## [1] &quot;p-value 0.6688&quot;
+##   14.07   63.32  110.68  157.21  199.91 1498.85 
+## [1] &quot;p-value 0.6586&quot;
 ## [1] &quot;KS&quot;
 ## [1] &quot;gcv 0.128932561055931&quot;
 ## [1] &quot;m 9 tau_n 0.332134206312301&quot;
 ## [1] &quot;test statistic: 709.345279801765&quot;
 ## [1] &quot;Bootstrap distribution&quot;
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   288.9   695.7   912.5   991.8  1194.7  2857.1 
-## [1] &quot;p-value 0.7358&quot;</code></pre>
+##   290.6   695.8   910.2   986.8  1200.7  2953.0 
+## [1] &quot;p-value 0.7344&quot;</code></pre>
 <ul>
 <li>Results of shift = 0.8</li>
 </ul>
@@ -680,31 +679,31 @@ bootstrap distribution and the p-value.</li>
 <tbody>
 <tr class="odd">
 <td align="left">plug</td>
-<td align="right">0.1714</td>
-<td align="right">0.1230</td>
-<td align="right">0.1156</td>
-<td align="right">0.2482</td>
+<td align="right">0.2458</td>
+<td align="right">0.1662</td>
+<td align="right">0.1234</td>
+<td align="right">0.2726</td>
 </tr>
 <tr class="even">
 <td align="left">diff</td>
-<td align="right">0.5762</td>
-<td align="right">0.9314</td>
-<td align="right">0.6688</td>
-<td align="right">0.7358</td>
+<td align="right">0.5710</td>
+<td align="right">0.9464</td>
+<td align="right">0.6586</td>
+<td align="right">0.7344</td>
 </tr>
 </tbody>
 </table>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>xtable<span class="sc">::</span><span class="fu">xtable</span>(pvmatrix, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## % latex table generated in R 4.3.2 by xtable 1.8-4 package
-## % Tue Dec 26 10:17:49 2023
+<pre><code>## % latex table generated in R 4.4.1 by xtable 1.8-4 package
+## % Tue Jul 30 21:26:26 2024
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rrrrr}
 ##   \hline
 ##  &amp; KPSS &amp; RS &amp; VS &amp; KS \\ 
 ##   \hline
-## plug &amp; 0.171 &amp; 0.123 &amp; 0.116 &amp; 0.248 \\ 
-##   diff &amp; 0.576 &amp; 0.931 &amp; 0.669 &amp; 0.736 \\ 
+## plug &amp; 0.246 &amp; 0.166 &amp; 0.123 &amp; 0.273 \\ 
+##   diff &amp; 0.571 &amp; 0.946 &amp; 0.659 &amp; 0.734 \\ 
 ##    \hline
 ## \end{tabular}
 ## \end{table}</code></pre>
@@ -725,17 +724,17 @@ year is constant.</p>
 <span id="cb24-10"><a href="#cb24-10" tabindex="-1"></a>hk1<span class="sc">$</span>x <span class="ot">=</span> hk<span class="sc">$</span>x[<span class="dv">366</span><span class="sc">:</span><span class="dv">730</span>,]</span>
 <span id="cb24-11"><a href="#cb24-11" tabindex="-1"></a>hk1<span class="sc">$</span>y <span class="ot">=</span> hk<span class="sc">$</span>y[<span class="dv">366</span><span class="sc">:</span><span class="dv">730</span>]</span>
 <span id="cb24-12"><a href="#cb24-12" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">heter_gradient</span>(hk1, setting, <span class="at">mvselect =</span> <span class="sc">-</span><span class="dv">2</span>, <span class="at">verbose =</span> T)</span></code></pre></div>
-<pre><code>## [1] &quot;m 11 tau_n 0.414293094094381&quot;
+<pre><code>## [1] &quot;m 12 tau_n 0.364293094094381&quot;
 ## [1] 10464.35
 ##        V1       
-##  Min.   : 1343  
-##  1st Qu.: 3343  
-##  Median : 4328  
-##  Mean   : 4674  
-##  3rd Qu.: 5633  
-##  Max.   :13336</code></pre>
+##  Min.   : 1537  
+##  1st Qu.: 3809  
+##  Median : 4838  
+##  Mean   : 5239  
+##  3rd Qu.: 6296  
+##  Max.   :15552</code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>p1</span></code></pre></div>
-<pre><code>## [1] 0.0058</code></pre>
+<pre><code>## [1] 0.0158</code></pre>
 </div>
 
 
